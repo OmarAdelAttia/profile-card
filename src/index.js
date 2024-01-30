@@ -2,6 +2,39 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
+const skills = [
+  {
+    skill: "HTML+CSS",
+    level: "advanced",
+    color: "#2662EA"
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    color: "#EFD81D"
+  },
+  {
+    skill: "Web Design",
+    level: "advanced",
+    color: "#C3DCAF"
+  },
+  {
+    skill: "Git and GitHub",
+    level: "intermediate",
+    color: "#E84F33"
+  },
+  {
+    skill: "React",
+    level: "advanced",
+    color: "#60DAFB"
+  },
+  {
+    skill: "Svelte",
+    level: "beginner",
+    color: "#FF3B00"
+  }
+];
+
 function App() {
   return (
     <div className="card">
@@ -22,30 +55,41 @@ function Avatar() {
 }
 
 function Intro() {
-  return <div>
-    <h1>Omar Adel</h1>
-    <p>I am a frontend developer work in Knowledge Net company and an instructor in the ITI.
-      When not coding I draw, go to the gym or hangover with my firends.</p>
-  </div>;
+  return (
+    <div>
+      <h1>Omar Adel</h1>
+      <p>I am a frontend developer work in Knowledge Net company and an instructor in the ITI.
+        When not coding I draw, go to the gym or hangover with my firends.</p>
+    </div>
+  );
 }
 
 function SkillList() {
-  return <div className='skill-list'>
-    <Skill skill='React' emoji='🏫' color='#934A5F' />
-    <Skill skill='Angular' emoji='✌' color='#0C4A60' />
-    <Skill skill='JavaScript' emoji='👌' color='#354649' />
-    <Skill skill='Figma' emoji='❤' color='#9F4298' />
-    <Skill skill='Adobe XD' emoji='😍' color='#7F056E' />
-    <Skill skill='HTML+CSS' emoji='✔😉' color='#8E7C68' />
-    <Skill skill='SCSS' emoji='💪' color='#E2495B' />
-  </div>;
+  const skillArray = skills;
+
+  return (
+    <div className='skill-list'>
+      {skillArray.map(skill => <Skill skill={skill} />)}
+    </div>
+  );
 }
 
-function Skill(props) {
-  return <div className='skill' style={{ background: props.color, color: 'white' }}>
-    <span>{props.skill}</span>
-    <span>{props.emoji}</span>
-  </div>;
+function Skill({ skill }) {
+  // let emoji = '';
+  // if (skill.level === 'advanced') emoji = '💪🏼';
+  // if (skill.level === 'intermediate') emoji = '✌🏼';
+  // if (skill.level === 'beginner') emoji = '👍🏼';
+  return (
+    <div className='skill' style={{ background: skill.color, color: 'white' }}>
+      <span>{skill.skill}</span>
+      {/* <span>{emoji}</span> */}
+      <span>
+        {skill.level === 'advanced' && '💪🏼'}
+        {skill.level === 'intermediate' && '✌🏼'}
+        {skill.level === 'beginner' && '👍🏼'}
+      </span>
+    </div >
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
